@@ -777,14 +777,15 @@ template {
 
 /* List view */
 .item {
-    border: 1px dotted var(--item-border-color);
-    margin-bottom: 20px;
+    border: 1px solid var(--item-border-color);
+    border-radius: 12px;
     padding: var(--item-padding);
     overflow: hidden;
 }
 
 .item.current-item {
     border: var(--current-item-border-width) solid var(--current-item-border-color);
+    border-radius: 12px;
     padding: 3px;
     box-shadow: var(--current-item-box-shadow);
 }

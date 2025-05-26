@@ -160,6 +160,12 @@ clean-integration-test:
 	@ rm miniflux-test
 	@ psql -U postgres -c 'drop database if exists miniflux_test;'
 
+maxiflux-docker:
+	docker build -t joantone/maxiflux -f packaging/docker/alpine/Dockerfile .
+
+maxiflux-deploy:
+	docker compose -f packaging/docker-compose/maxiflux.yml up -d
+
 docker-image:
 	docker build --pull -t $(DOCKER_IMAGE):$(VERSION) -f packaging/docker/alpine/Dockerfile .
 

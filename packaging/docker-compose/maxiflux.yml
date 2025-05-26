@@ -1,0 +1,23 @@
+version: '3'
+services:
+  maxiflux:
+    image: joantone/maxiflux
+    ports:
+      - "7001:8080"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://maxiflux:${MAXIFLUX_PASSWORD}@db/maxiflux?sslmode=disable
+      - RUN_MIGRATIONS=1
+      - CREATE_ADMIN=1
+      - ADMIN_USERNAME=${MAXIFLUX_USERNAME}
+      - ADMIN_PASSWORD=${MAXIFLUX_PASSWORD}
+  db:
+    image: postgres:10.1
+    environment:
+      - POSTGRES_USER=maxiflux
+      - POSTGRES_PASSWORD=${MAXIFLUX_PASSWORD}
+    volumes:
+      - maxiflux-db:/var/lib/postgresql/data
+volumes:
+  maxiflux-db:
